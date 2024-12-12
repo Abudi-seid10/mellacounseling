@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { Home } from './pages/Home';
@@ -14,10 +14,10 @@ function App() {
         <Header />
         <main className="flex-grow pt-16">
           <Routes>
-            <Route path="/mellacounseling" element={<Home />} />
-            <Route path="/mellacounseling/services" element={<Services />} />
-            <Route path="/mellacounseling/team" element={<Team />} />
-            <Route path="/mellacounseling/contact" element={<Contact />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
         <Footer />
