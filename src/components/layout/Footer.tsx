@@ -20,7 +20,7 @@ export const Footer = () => {
               </p>
               <p className="flex items-center text-gray-600">
                 <Mail className="w-5 h-5 mr-2 text-teal-600" />
-                contact@healingminds.com
+                contact@Mellacounseling.com
               </p>
             </div>
           </div>
@@ -51,12 +51,12 @@ export const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/insurance" className="text-gray-600 hover:text-teal-600">
+                <Link to="" className="text-gray-600 hover:text-teal-600">
                   Insurance Information
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-600 hover:text-teal-600">
+                <Link to="" className="text-gray-600 hover:text-teal-600">
                   Privacy Policy
                 </Link>
               </li>
@@ -82,6 +82,9 @@ export const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-200">
           <p className="text-center text-gray-500">
             © {new Date().getFullYear()} Healing Minds. All rights reserved.
+          </p>   
+          <p className="text-center text-gray-500">
+            Designed by <a href="https://www.motech.et" className="text-teal-600 hover:underline">MoTech Solutions</a>
           </p>
         </div>
       </div>
