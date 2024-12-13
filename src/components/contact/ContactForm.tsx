@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 
 interface FormData {
   name: string;
@@ -18,11 +19,7 @@ export const ContactForm: React.FC = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
-  };
+  const [state, handleSubmit] = useForm('xrbgvjyw'); // Replace with your Formspree form ID
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -34,8 +31,21 @@ export const ContactForm: React.FC = () => {
     }));
   };
 
+  if (state.succeeded) {
+    return <p className="text-green-500">Thanks for contacting us! Your message has been sent.</p>;
+  }
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit({
+          email: formData.email,
+          message: JSON.stringify(formData), // Send the entire form data as a JSON string
+        });
+      }}
+      className="space-y-6"
+    >
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">
           Full Name
@@ -50,7 +60,6 @@ export const ContactForm: React.FC = () => {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
         />
       </div>
-
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
           Email Address
@@ -64,8 +73,8 @@ export const ContactForm: React.FC = () => {
           onChange={handleChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
         />
+        <ValidationError prefix="Email" field="email" errors={state.errors} />
       </div>
-
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
           Phone Number
@@ -79,7 +88,6 @@ export const ContactForm: React.FC = () => {
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
         />
       </div>
-
       <div>
         <label htmlFor="serviceType" className="block text-sm font-medium text-gray-700">
           Service Type
@@ -98,7 +106,6 @@ export const ContactForm: React.FC = () => {
           <option value="group">Group Therapy</option>
         </select>
       </div>
-
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700">
           Message
@@ -112,14 +119,17 @@ export const ContactForm: React.FC = () => {
           onChange={handleChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-teal-500 focus:ring-teal-500"
         />
+        <ValidationError prefix="Message" field="message" errors={state.errors} />
       </div>
-
       <button
         type="submit"
-        className="w-full flex justify-center items-center bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700"
+        disabled={state.submitting}
+        className={`w-full flex justify-center items-center ${
+          state.submitting ? 'bg-gray-400' : 'bg-teal-600'
+        } text-white px-4 py-2 rounded-md hover:bg-teal-700`}
       >
         <Send className="w-4 h-4 mr-2" />
-        Send Message
+        {state.submitting ? 'Sending...' : 'Send Message'}
       </button>
     </form>
   );
