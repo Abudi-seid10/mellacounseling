@@ -9,6 +9,11 @@ export interface TeamMember {
   imageUrl: string;
 }
 
+export interface ServiceFAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Service {
   id: string;
   title: string;
@@ -16,10 +21,15 @@ export interface Service {
   approaches: string[];
   outcomes: string[];
   sessionInfo: string;
-  faqs: Array<{
-    question: string;
-    answer: string;
-  }>;
+  faqs?: ServiceFAQ[]; // Make FAQs optional
   icon: string;
   imageUrl: string;
+}
+
+export interface SlideData {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  link: string;
 }
