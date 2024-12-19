@@ -9,7 +9,14 @@ export const Header = () => {
     <header className="bg-white shadow-sm fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
+          
           <Link to="/" className="flex items-center">
+            {/* Logo */}
+            <img 
+              src="src\img\android-chrome-192x192.png" 
+              alt="Mella Counseling Logo" 
+              className="h-8 w-8 mr-2"
+            />
             <span className="text-2xl font-semibold text-teal-600">Mella Counseling Center</span>
           </Link>
 

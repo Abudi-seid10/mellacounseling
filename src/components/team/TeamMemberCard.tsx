@@ -1,6 +1,6 @@
 import React from 'react';
 import { TeamMember } from '../../types';
-import { GraduationCap, Award } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 interface TeamMemberCardProps {
   member: TeamMember;
@@ -12,7 +12,7 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
       <img
         src={member.imageUrl}
         alt={member.name}
-        className="w-full h-64 object-cover"
+        className="w-full h-74 object-cover"
       />
       <div className="p-6">
         <h3 className="text-2xl font-semibold mb-2">{member.name}</h3>
@@ -32,18 +32,6 @@ export const TeamMemberCard: React.FC<TeamMemberCardProps> = ({ member }) => {
         </div>
 
         <p className="text-gray-600 mb-4">{member.biography}</p>
-
-        <div>
-          <h4 className="text-lg font-medium mb-2 flex items-center">
-            <GraduationCap className="w-5 h-5 mr-2" />
-            Education
-          </h4>
-          <ul className="list-disc list-inside text-gray-600">
-            {member.education.map((edu, index) => (
-              <li key={index}>{edu}</li>
-            ))}
-          </ul>
-        </div>
       </div>
     </div>
   );
