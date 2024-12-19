@@ -13,7 +13,7 @@ export const Header = () => {
           <Link to="/" className="flex items-center">
             {/* Logo */}
             <img 
-              src="src\img\android-chrome-192x192.png" 
+              src="\src\img\android-chrome-192x192.png" 
               alt="Mella Counseling Logo" 
               className="h-8 w-8 mr-2"
             />
